@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/wes.dollar/Code/express-docker-postgres/src/routes/product.route.test.ts">
+  </file>
+  <file path="/Users/wes.dollar/Code/express-docker-postgres/src/constants/static-files-directory.test.ts">
+    <testCase name="provides the appropriate value" duration="2"/>
+  </file>
+  <file path="/Users/wes.dollar/Code/express-docker-postgres/src/helpers/validate-data.test.ts">
+    <testCase name="should return validate data if all data passed" duration="19"/>
+    <testCase name="should return error when data is not valid" duration="2"/>
+  </file>
+</testExecutions>

@@ -1,0 +1,11 @@
+process.env.LOG_STATS = "false";
+process.env.BARCODE_API_KEY = 123457890;
+process.env.BASEURL = "/proganywhere/lookup";
+process.env.NODE_ENV = "dev";
+process.env.PORT = 33333;
+process.env.SERP_API_KEY = "fake-key";
+process.env.MAX_PRICE = 3000;
+process.env.MIN_PRICE = 300;
+process.env.MAX_SEARCH_RESULTS = 20;
+process.env.SEARCH_RETRY_ATTEMPTS = 5;
+process.env.INCLUDE_VENDORS_IN_PRODUCT_SEARCH = "true";

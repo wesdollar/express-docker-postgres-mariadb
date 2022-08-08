@@ -1,0 +1,111 @@
+{
+  "name": "express-docker-postgres",
+  "packageManager": "yarn@3.2.2",
+  "version": "1.0.0",
+  "author": "Wes Dollar",
+  "license": "MIT",
+  "main": "src/server.ts",
+  "dependencies": {
+    "@dollarcode/dollar-modules": "^1.0.11",
+    "@faker-js/faker": "^7.3.0",
+    "@types/jest": "^28.1.6",
+    "@yarnpkg/pnpify": "^3.0.1-rc.2",
+    "chalk": "4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.0",
+    "express-ws": "^5.0.2",
+    "jest-pnp-resolver": "^1.2.2",
+    "joi": "^17.4.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "mongodb": "^4.1.3",
+    "node-fetch": "2.6.5",
+    "node-libcurl": "^2.3.3",
+    "numbro": "^2.3.5",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "prompts": "^2.4.2",
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1",
+    "short-unique-id": "^4.4.4",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@jest/types": "^28.1.3",
+    "@types/body-parser": "^1.19.1",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/dotenv-flow": "^3.2.0",
+    "@types/express": "^4.17.13",
+    "@types/faker": "^5.5.8",
+    "@types/fs-extra": "^9.0.12",
+    "@types/lodash": "^4.14.172",
+    "@types/node": "^16.9.0",
+    "@types/node-fetch": "^2.5.12",
+    "@types/prompts": "^2.0.14",
+    "@types/shelljs": "^0.8.9",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "@typescript-eslint/typescript-estree": "^4.31.0",
+    "commander": "^9.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-mdx": "^1.15.0",
+    "eslint-plugin-prettier": "latest",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
+    "husky": "^7.0.0",
+    "jest": "^28.1.3",
+    "jest-mock-extended": "^2.0.4",
+    "jest-sonar-reporter": "^2.0.0",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "shelljs": "^0.8.4",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "db-test": "ts-node -r dotenv-flow/config src/db-helpers/db-test.ts",
+    "develop": "yarn fast-watch",
+    "docker-develop": "nodemon -L --watch dist -e js,html dist/server.js",
+    "husky-init": "husky install",
+    "quickstart": "yarn ts-node -r dotenv-flow/config quickstart/quickstart.ts start",
+    "sequelize-db-update": "yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all",
+    "sequelize-db-update-local": "yarn sequelize-cli db:migrate --env local && yarn sequelize-cli db:seed:all --env local",
+    "start": "node dist/server.js",
+    "test": "jest --watch",
+    "test-coverage": "jest --coverage",
+    "test-no-watch": "jest",
+    "test-build": "run-p test-no-watch tsc",
+    "tsc": "tsc",
+    "tsc-watch": "tsc --watch"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "public/**/*.{html,css,less,ejs}": [
+      "prettier --write"
+    ]
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts, html",
+    "ignore": [
+      "src/public"
+    ]
+  }
+}

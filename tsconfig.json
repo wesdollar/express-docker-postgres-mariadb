@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": ["jest", "node"],
+    "target": "es6",
+    "lib": ["esnext", "dom", "DOM.Iterable"],
+    "module": "CommonJS",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "exclude": [
+    "./*.ts",
+    "./quickstart",
+    "files",
+    "copy-express-files.ts",
+    "./node_modules",
+    "dist",
+    "build-docs.ts",
+    "docs/**/*",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "./*.js"
+  ]
+}

@@ -1,0 +1,9 @@
+.git
+.expo
+.expo-shared
+.husky
+assets
+ios
+node_modules
+yarn.lock
+.husky
