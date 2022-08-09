@@ -42,7 +42,18 @@ export const getDockerComposeContents = (
     environment:
       - MARIADB_USER=root
       - MARIADB_ROOT_PASSWORD=\${DB_PASSWORD}
-      - MARIADB_DATABASE=\${DB_NAME}`;
+      - MARIADB_DATABASE=\${DB_NAME}
+
+  ${serviceName}_adminer:
+    image: adminer
+    restart: always
+    ports:
+      - \${PGADMIN_LISTEN_PORT}:8080
+    depends_on:
+      - ${serviceName}_mariadb
+    environment:
+      - ADMINER_DEFAULT_SERVER=${serviceName}_mariadb
+      - ADMINER_DESIGN=dracula`;
   }
 
   return `version: '3.9'
