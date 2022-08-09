@@ -1,27 +1,28 @@
 export const getPgConfigContents = (
-  serviceName: string,
+  database: string,
   dbPort: string,
   dbPassword: string,
-  gatewayIp: string
+  gatewayIp: string,
+  dialect: string
   // eslint-disable-next-line max-params
 ) => {
-  serviceName = serviceName.replace("_postgres", "");
+  database = database.replace("_postgres", "");
 
   return `{
   "development": {
-    "username": "postgres",
+    "username": "root",
     "password": "${dbPassword}",
-    "database": "${serviceName}_postgres",
+    "database": "${database}",
     "host": "${gatewayIp}",
-    "dialect": "postgres",
+    "dialect": "${dialect}",
     "port": "${dbPort}"
   },
   "local": {
-    "username": "postgres",
+    "username": "root",
     "password": "${dbPassword}",
-    "database": "${serviceName}_postgres",
+    "database": "${database}",
     "host": "localhost",
-    "dialect": "postgres",
+    "dialect": "${dialect}",
     "port": "${dbPort}"
   }
 }

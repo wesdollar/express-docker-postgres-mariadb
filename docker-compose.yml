@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  i_give_up:
-    container_name: i_give_up
+  another_maria_test:
+    container_name: another_maria_test
     # command: yarn docker-develop
     restart: always
     build: .
@@ -10,34 +10,26 @@ services:
     env_file:
       - .env
     depends_on:
-      - i_give_up_postgres
+      - another_maria_test_mariadb
     volumes:
       - .:/app
       - ./src/public:/app/dist/public
       - ./src:/app/src
       - ./dist:/app/dist
 
-  i_give_up_pgadmin:
-    container_name: i_give_up_pgadmin
-    restart: always
-    image: dpage/pgadmin4
-    env_file:
-      - .env
-    ports:
-      - ${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}
-    depends_on:
-      - i_give_up_postgres
 
-  i_give_up_postgres:
-    container_name: i_give_up_postgres
-    image: postgres
+  another_maria_test_mariadb:
+    container_name: another_maria_test_mariadb
+    image: mariadb:10.5.13
+    restart: always
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:3306
     volumes:
-      - i_give_up:/data/db_i_give_up_postgres
+      - another_maria_test:/data/db_another_maria_test_mariadb
     environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
+      - MARIADB_USER=root
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_NAME}
 
 volumes:
- i_give_up: {}
+ another_maria_test: {}

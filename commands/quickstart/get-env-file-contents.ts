@@ -4,15 +4,16 @@ export const getEnvFileContents = (
   serviceName: string,
   dbPassword: string,
   emailAddress: string,
-  pgAdminPort: string
+  pgAdminPort: string,
+  dbSelection: string
   // eslint-disable-next-line max-params
 ) => `NODE_ENV=development
 PORT=${servicePort}
 API_BASE=localhost:\${PORT}
 API_VERSION=v1
 
-DB_USER=postgres
-DB_NAME=${serviceName}_postgres
+DB_USER=root
+DB_NAME=${serviceName}_${dbSelection}
 DB_PASSWORD=${dbPassword}
 DB_PORT=${dbPort}
 

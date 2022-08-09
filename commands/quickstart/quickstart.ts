@@ -27,13 +27,14 @@ program
     const options = program.opts();
     const isInit = options.init || null;
     const installYarnDependencies = options.yarn || null;
-    let dbPassword: string;
+    let dbPassword = "";
     let dbPort;
     let emailAddress;
     let promptedDbPassword;
     let servicePort: string;
     let pgAdminPort;
     let serviceName;
+    let dbSelection;
 
     rimraf.sync("dist");
 
@@ -63,9 +64,8 @@ program
       Here's what we'll be doing:
 
       - Creating your .env file
-      - Setting up the Docker containers for the service, Postgres, and pgAdmin
+      - Setting up the Docker containers for the service, DB, and DB web interface
       - Configuring your DB connection
-      - Setting up your pgAdmin admin account
       - Running the DB migration and seeds
       `
       );
@@ -83,6 +83,7 @@ program
         dbPort,
         pgAdminPort,
         serviceName,
+        dbSelection,
       } = await prompts([
         {
           type: "text",
@@ -101,6 +102,16 @@ program
           initial: "34567",
         },
         {
+          type: "select",
+          name: "dbSelection",
+          message: "DB Selection:",
+          initial: 0,
+          choices: [
+            { title: "Postgres", value: "postgres" },
+            { title: "MariaDB", value: "mariadb" },
+          ],
+        },
+        {
           type: "text",
           name: "dbPort",
           message: "DB Port:",
@@ -114,7 +125,7 @@ program
         {
           type: "text",
           name: "pgAdminPort",
-          message: "pgAdmin Port:",
+          message: "DB GUI Port:",
           initial: "34568",
         },
       ]));
@@ -130,7 +141,7 @@ program
        */
       writeFileSync(
         `${cwd()}/docker-compose.yml`,
-        getDockerComposeContents(serviceName)
+        getDockerComposeContents(serviceName, dbSelection)
       );
 
       console.log(chalk.blue("docker-compose file created"));
@@ -154,7 +165,8 @@ program
           serviceName,
           dbPassword,
           emailAddress,
-          pgAdminPort
+          pgAdminPort,
+          dbSelection
         )
       );
 
@@ -201,7 +213,7 @@ program
        * get pgAdmin Gateway IP
        */
       try {
-        let inspectPreface = serviceName;
+        let inspectService = `${serviceName}_${dbSelection}`;
 
         if (!isInit) {
           const {
@@ -210,11 +222,11 @@ program
             readFileSync(`${cwd()}/config/config.json`).toString()
           );
 
-          inspectPreface = database.replace("_postgres", "");
+          inspectService = database;
         }
 
         const inspectProcess = execSync(
-          `docker inspect ${inspectPreface}_postgres`
+          `docker inspect ${inspectService}`
         ).toString();
 
         pgAdminInspectResponse = JSON.parse(inspectProcess);
@@ -244,7 +256,13 @@ program
       writeFileSync(
         `${cwd()}/config/config.json`,
         // @ts-ignore TODO: typing
-        getPgConfigContents(serviceName, dbPort, dbPassword, pgAdminGatewayIp)
+        getPgConfigContents(
+          `${serviceName}_${dbSelection}`,
+          dbPort,
+          dbPassword,
+          pgAdminGatewayIp,
+          dbSelection
+        )
       );
 
       console.log(chalk.blue("Sequelize config file created"));
@@ -253,15 +271,15 @@ program
        * update sequelize config file with current pgAdmin IP
        */
       const {
-        development: { password, port, database },
+        development: { password, port, database, dialect },
       } = JSON.parse(readFileSync(`${cwd()}/config/config.json`).toString());
 
       writeFileSync(
         `${cwd()}/config/config.json`,
-        getPgConfigContents(database, port, password, pgAdminGatewayIp)
+        getPgConfigContents(database, port, password, pgAdminGatewayIp, dialect)
       );
 
-      console.log(chalk.blue("Sequelize config updated with Postgres IP"));
+      console.log(chalk.blue("Sequelize config updated with DB IP"));
     }
 
     /**
