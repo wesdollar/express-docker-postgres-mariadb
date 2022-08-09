@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  retailer-product-service:
-    container_name: retailer-product-service
+  i_give_up:
+    container_name: i_give_up
     # command: yarn docker-develop
     restart: always
     build: .
@@ -10,15 +10,15 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      - i_give_up_postgres
     volumes:
       - .:/app
       - ./src/public:/app/dist/public
       - ./src:/app/src
       - ./dist:/app/dist
 
-  pgadmin:
-    container_name: pgadmin
+  i_give_up_pgadmin:
+    container_name: i_give_up_pgadmin
     restart: always
     image: dpage/pgadmin4
     env_file:
@@ -26,18 +26,18 @@ services:
     ports:
       - ${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}
     depends_on:
-      - db
+      - i_give_up_postgres
 
-  db:
-    container_name: postgres
+  i_give_up_postgres:
+    container_name: i_give_up_postgres
     image: postgres
     ports:
       - ${DB_PORT}:5432
     volumes:
-      - postgres:/data/db
+      - i_give_up:/data/db_i_give_up_postgres
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
 
 volumes:
- postgres: {}
+ i_give_up: {}

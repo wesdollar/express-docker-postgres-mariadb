@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "src/server.ts",
   "dependencies": {
-    "@dollarcode/dollar-modules": "^1.0.11",
+    "@dollarcode/dollar-modules": "^1.0.13",
     "@faker-js/faker": "^7.3.0",
     "@types/jest": "^28.1.6",
     "@yarnpkg/pnpify": "^3.0.1-rc.2",
@@ -49,6 +49,7 @@
     "@types/node": "^16.9.0",
     "@types/node-fetch": "^2.5.12",
     "@types/prompts": "^2.0.14",
+    "@types/rimraf": "^3.0.2",
     "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
@@ -72,6 +73,7 @@
     "pretty-quick": "^3.1.1",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.7.4"
   },
   "scripts": {
@@ -79,7 +81,8 @@
     "develop": "yarn fast-watch",
     "docker-develop": "nodemon -L --watch dist -e js,html dist/server.js",
     "husky-init": "husky install",
-    "quickstart": "yarn ts-node -r dotenv-flow/config quickstart/quickstart.ts start",
+    "quickstart": "yarn ts-node -r dotenv-flow/config commands/quickstart/quickstart.ts start",
+    "pre-commit": "echo pre-commit script goes here",
     "sequelize-db-update": "yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all",
     "sequelize-db-update-local": "yarn sequelize-cli db:migrate --env local && yarn sequelize-cli db:seed:all --env local",
     "start": "node dist/server.js",

@@ -1409,10 +1409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dollarcode/dollar-modules@npm:^1.0.11":
-  version: 1.0.11
-  resolution: "@dollarcode/dollar-modules@npm:1.0.11"
-  checksum: 3a6d8d6206052da753d42a5d407b1cce5a4b116e6f659610b481af5a8d3f8b2295a3239f374ab5729ad40ee775b824e3bddd80966e475a2e16d4a7a0ad853c5c
+"@dollarcode/dollar-modules@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "@dollarcode/dollar-modules@npm:1.0.13"
+  checksum: e8a87a432633e80069366ef0f087e3624de42f07b11167a1aa156b81780a6c3919fad7b434b1548746be3836160cbc35e6bf6c47a666db7a3992c7129b291315
   languageName: node
   linkType: hard
 
@@ -2309,6 +2309,16 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e99fc7cc6265407987b30deda54c1c24bb1478803faf6037557a774b2f034c5b097ffd65847daa87e82a61a250d919f35c3588654b0fdaa816906650f596d1b0
+  languageName: node
+  linkType: hard
+
+"@types/rimraf@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/rimraf@npm:3.0.2"
+  dependencies:
+    "@types/glob": "*"
+    "@types/node": "*"
+  checksum: b47fa302f46434cba704d20465861ad250df79467d3d289f9d6490d3aeeb41e8cb32dd80bd1a8fd833d1e185ac719fbf9be12e05ad9ce9be094d8ee8f1405347
   languageName: node
   linkType: hard
 
@@ -4607,7 +4617,7 @@ __metadata:
     "@babel/core": ^7.18.9
     "@babel/preset-env": ^7.15.6
     "@babel/preset-typescript": ^7.15.0
-    "@dollarcode/dollar-modules": ^1.0.11
+    "@dollarcode/dollar-modules": ^1.0.13
     "@faker-js/faker": ^7.3.0
     "@jest/types": ^28.1.3
     "@types/body-parser": ^1.19.1
@@ -4622,6 +4632,7 @@ __metadata:
     "@types/node": ^16.9.0
     "@types/node-fetch": ^2.5.12
     "@types/prompts": ^2.0.14
+    "@types/rimraf": ^3.0.2
     "@types/shelljs": ^0.8.9
     "@typescript-eslint/eslint-plugin": ^4.31.0
     "@typescript-eslint/parser": ^4.31.0
@@ -4668,6 +4679,7 @@ __metadata:
     shelljs: ^0.8.4
     short-unique-id: ^4.4.4
     ts-node: ^10.9.1
+    tsconfig-paths: ^4.1.0
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
@@ -9525,6 +9537,17 @@ __metadata:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: 090adff1302ab20bd3486e6b4799e90f97726ed39e02b39e566f8ab674fd5bd5f727f43615debbfc580d33c6d9d1c6b1b3ce7d8e3cca3e20530a145ffa232c35
+  languageName: node
+  linkType: hard
+
+"tsconfig-paths@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "tsconfig-paths@npm:4.1.0"
+  dependencies:
+    json5: ^2.2.1
+    minimist: ^1.2.6
+    strip-bom: ^3.0.0
+  checksum: e4b101f81b2abd95499d8145e0aa73144e857c2c359191058486cef101b7accae22a69114e5d5814a13d5ab3b0bae70dd0c85bcdb7e829bbe1bfda5c9067c9b1
   languageName: node
   linkType: hard
 

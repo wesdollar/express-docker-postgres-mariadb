@@ -6,15 +6,18 @@ import prompts from "prompts";
 import { getEnvFileContents } from "./get-env-file-contents";
 import { getPgConfigContents } from "./get-pg-config-contents";
 import chalk from "chalk";
+import rimraf from "rimraf";
+import { getDockerComposeContents } from "./get-docker-compose-contents";
 
 program
-  .name("quickstart-retailer-product-service")
-  .description("fancy CLI tools for retailer-product-service")
+  .name("quickstart")
+  .description("fancy CLI tool for launching the services")
   .version("1.0.0");
 
 program
   .option("-i, --init", "set up the local dev environment")
   .option("-y, --yarn", "install yarn dependencies")
+  .option("-r, --rerun", "clears out config and .env file")
   .description(
     "Start local dev environment. Pass --init if this is your first run."
   )
@@ -25,6 +28,25 @@ program
     const installYarnDependencies = options.yarn || null;
     let dbPassword: string;
     let dbPort;
+    let emailAddress;
+    let promptedDbPassword;
+    let servicePort: string;
+    let pgAdminPort;
+    let serviceName;
+
+    rimraf.sync("dist");
+
+    if (options.rerun) {
+      try {
+        rimraf.sync("config");
+        rimraf.sync(".env");
+        rimraf.sync("docker-compose.yml");
+      } catch (error) {
+        console.error(error);
+      }
+
+      console.log(chalk.blue("rerun files cleared"));
+    }
 
     if (isInit) {
       const { name } = await prompts({
@@ -53,19 +75,24 @@ program
         message: "Are you ready to begin?",
       });
 
-      const {
+      ({
         emailAddress,
         promptedDbPassword,
         servicePort,
         dbPort,
         pgAdminPort,
+        serviceName,
       } = await prompts([
         {
           type: "text",
           name: "emailAddress",
           message: "Email address:",
         },
-
+        {
+          type: "text",
+          name: "serviceName",
+          message: "Service Name:",
+        },
         {
           type: "text",
           name: "servicePort",
@@ -89,13 +116,23 @@ program
           message: "pgAdmin Port:",
           initial: "34568",
         },
-      ]);
+      ]));
 
       dbPassword = promptedDbPassword;
 
       if (!initContinue) {
         return console.log("Ok, come back when you're ready.");
       }
+
+      /**
+       * create docker-compose.yml
+       */
+      writeFileSync(
+        `${cwd()}/docker-compose.yml`,
+        getDockerComposeContents(serviceName)
+      );
+
+      console.log(chalk.blue("docker-compose file created"));
 
       /**
        * install yarn dependencies
@@ -110,10 +147,11 @@ program
       writeFileSync(
         `${cwd()}/.env`,
         getEnvFileContents(
-          emailAddress,
-          dbPassword,
           servicePort,
           dbPort,
+          serviceName,
+          dbPassword,
+          emailAddress,
           pgAdminPort
         )
       );
@@ -161,7 +199,21 @@ program
        * get pgAdmin Gateway IP
        */
       try {
-        const inspectProcess = execSync("docker inspect postgres").toString();
+        let inspectPreface = serviceName;
+
+        if (!isInit) {
+          const {
+            development: { database },
+          } = JSON.parse(
+            readFileSync(`${cwd()}/config/config.json`).toString()
+          );
+
+          inspectPreface = database.replace("_postgres", "");
+        }
+
+        const inspectProcess = execSync(
+          `docker inspect ${inspectPreface}_postgres`
+        ).toString();
 
         pgAdminInspectResponse = JSON.parse(inspectProcess);
       } catch (error) {
@@ -170,10 +222,11 @@ program
         );
       }
 
+      // TODO: variablize "express-docker-postgres" for universal installation
       pgAdminGatewayIp =
         // @ts-ignore TODO: typing
         pgAdminInspectResponse[0]?.NetworkSettings?.Networks[
-          "retailer-product-service_default"
+          "express-docker-postgres_default"
         ].Gateway || "";
 
       ipCheckAttempt++;
@@ -189,7 +242,7 @@ program
       writeFileSync(
         `${cwd()}/config/config.json`,
         // @ts-ignore TODO: typing
-        getPgConfigContents(dbPort, dbPassword, pgAdminGatewayIp)
+        getPgConfigContents(serviceName, dbPort, dbPassword, pgAdminGatewayIp)
       );
 
       console.log(chalk.blue("Sequelize config file created"));
@@ -198,12 +251,12 @@ program
        * update sequelize config file with current pgAdmin IP
        */
       const {
-        json: { development: password, port },
+        development: { password, port, database },
       } = JSON.parse(readFileSync(`${cwd()}/config/config.json`).toString());
 
       writeFileSync(
         `${cwd()}/config/config.json`,
-        getPgConfigContents(port, password, pgAdminGatewayIp)
+        getPgConfigContents(database, port, password, pgAdminGatewayIp)
       );
 
       console.log(chalk.blue("Sequelize config updated with Postgres IP"));
@@ -213,7 +266,13 @@ program
      * run db migration and seeds
      */
     console.log(chalk.blue("Running DB migrations and seeds"));
-    execSync("yarn sequelize-db-update-local");
+
+    try {
+      execSync("yarn sequelize-db-update-local");
+    } catch (error) {
+      console.error(error);
+    }
+
     console.log(chalk.blue("DB migrations and seeds completed"));
 
     console.log(chalk.blue("Firing up TSC watcher"));
@@ -222,10 +281,9 @@ program
     tscProcess.stdout.on("data", (data) => {
       console.log(data.toString());
 
+      console.log(chalk.blue(`\n\n==== Service Running ====\n`));
       console.log(
-        chalk.blue(
-          `\n\nService running at http://localhost:34567/proganywhere/retailer-product-service/\n\n`
-        )
+        chalk.green(`http://localhost:${servicePort || process.env.PORT}/`)
       );
     });
   });

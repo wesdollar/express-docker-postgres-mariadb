@@ -17,7 +17,7 @@
   },
   "exclude": [
     "./*.ts",
-    "./quickstart",
+    "commands/quickstart",
     "files",
     "copy-express-files.ts",
     "./node_modules",

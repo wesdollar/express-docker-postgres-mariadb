@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.18.9"],\
             ["@babel/preset-env", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:7.18.9"],\
             ["@babel/preset-typescript", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:7.18.6"],\
-            ["@dollarcode/dollar-modules", "npm:1.0.11"],\
+            ["@dollarcode/dollar-modules", "npm:1.0.13"],\
             ["@faker-js/faker", "npm:7.3.0"],\
             ["@jest/types", "npm:28.1.3"],\
             ["@types/body-parser", "npm:1.19.2"],\
@@ -51,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.45"],\
             ["@types/node-fetch", "npm:2.6.2"],\
             ["@types/prompts", "npm:2.4.0"],\
+            ["@types/rimraf", "npm:3.0.2"],\
             ["@types/shelljs", "npm:0.8.11"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:4.33.0"],\
             ["@typescript-eslint/parser", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:4.33.0"],\
@@ -97,6 +98,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["shelljs", "npm:0.8.5"],\
             ["short-unique-id", "npm:4.4.4"],\
             ["ts-node", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:10.9.1"],\
+            ["tsconfig-paths", "npm:4.1.0"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"]\
           ],\
           "linkType": "SOFT"\
@@ -2678,10 +2680,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@dollarcode/dollar-modules", [\
-        ["npm:1.0.11", {\
-          "packageLocation": "./.yarn/cache/@dollarcode-dollar-modules-npm-1.0.11-0642367773-3a6d8d6206.zip/node_modules/@dollarcode/dollar-modules/",\
+        ["npm:1.0.13", {\
+          "packageLocation": "./.yarn/cache/@dollarcode-dollar-modules-npm-1.0.13-98223363d4-e8a87a4326.zip/node_modules/@dollarcode/dollar-modules/",\
           "packageDependencies": [\
-            ["@dollarcode/dollar-modules", "npm:1.0.11"]\
+            ["@dollarcode/dollar-modules", "npm:1.0.13"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3713,6 +3715,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-responselike-npm-1.0.0-85dd08af42-e99fc7cc62.zip/node_modules/@types/responselike/",\
           "packageDependencies": [\
             ["@types/responselike", "npm:1.0.0"],\
+            ["@types/node", "npm:18.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/rimraf", [\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-rimraf-npm-3.0.2-dd6eb5de99-b47fa302f4.zip/node_modules/@types/rimraf/",\
+          "packageDependencies": [\
+            ["@types/rimraf", "npm:3.0.2"],\
+            ["@types/glob", "npm:7.2.0"],\
             ["@types/node", "npm:18.0.6"]\
           ],\
           "linkType": "HARD"\
@@ -6610,7 +6623,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.18.9"],\
             ["@babel/preset-env", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:7.18.9"],\
             ["@babel/preset-typescript", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:7.18.6"],\
-            ["@dollarcode/dollar-modules", "npm:1.0.11"],\
+            ["@dollarcode/dollar-modules", "npm:1.0.13"],\
             ["@faker-js/faker", "npm:7.3.0"],\
             ["@jest/types", "npm:28.1.3"],\
             ["@types/body-parser", "npm:1.19.2"],\
@@ -6625,6 +6638,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.45"],\
             ["@types/node-fetch", "npm:2.6.2"],\
             ["@types/prompts", "npm:2.4.0"],\
+            ["@types/rimraf", "npm:3.0.2"],\
             ["@types/shelljs", "npm:0.8.11"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:4.33.0"],\
             ["@typescript-eslint/parser", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:4.33.0"],\
@@ -6671,6 +6685,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["shelljs", "npm:0.8.5"],\
             ["short-unique-id", "npm:4.4.4"],\
             ["ts-node", "virtual:d88087fa2d53751c2d9ddc9bdb0ad1bf1f7180fff238645b1294fa6a94d1592234ed8cc87fdb4adca98c8f021c797c960a6db016c562581de733b6dece16f67e#npm:10.9.1"],\
+            ["tsconfig-paths", "npm:4.1.0"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"]\
           ],\
           "linkType": "SOFT"\
@@ -12201,6 +12216,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/swc__wasm",\
             "@types/typescript",\
             "typescript"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tsconfig-paths", [\
+        ["npm:4.1.0", {\
+          "packageLocation": "./.yarn/cache/tsconfig-paths-npm-4.1.0-719ff0a854-e4b101f81b.zip/node_modules/tsconfig-paths/",\
+          "packageDependencies": [\
+            ["tsconfig-paths", "npm:4.1.0"],\
+            ["json5", "npm:2.2.1"],\
+            ["minimist", "npm:1.2.6"],\
+            ["strip-bom", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

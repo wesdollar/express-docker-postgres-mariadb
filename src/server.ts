@@ -4,6 +4,7 @@ import { staticFilesDirectory } from "./constants/static-files-directory";
 import * as Routes from "./routes";
 import path from "path";
 import * as dotenvFlow from "dotenv-flow";
+import chalk from "chalk";
 
 const app = express();
 
@@ -38,10 +39,17 @@ app.use(
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`service listening at http://localhost:${port}/`);
-  console.log("\n");
+  console.log(chalk.green(`\n\nservice: http://localhost:${port}/`));
 
   console.log(
-    `health check via http://localhost:${port}/${process.env.API_VERSION}/healt-check`
+    chalk.blueBright(
+      `health check: http://localhost:${port}/${process.env.API_VERSION}/health-check`
+    )
+  );
+
+  console.log(
+    chalk.blueBright(
+      `get products: http://localhost:${port}/${process.env.API_VERSION}/store/1/products`
+    )
   );
 });
