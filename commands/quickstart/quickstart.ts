@@ -8,6 +8,7 @@ import { getPgConfigContents } from "./get-pg-config-contents";
 import chalk from "chalk";
 import rimraf from "rimraf";
 import { getDockerComposeContents } from "./get-docker-compose-contents";
+import path from "path";
 
 program
   .name("quickstart")
@@ -138,6 +139,7 @@ program
        * install yarn dependencies
        */
       execSync("yarn install");
+      execSync("yarn dlx @yarnpkg/sdks vscode");
 
       console.log(chalk.blue("Yarn dependencies installed"));
 
@@ -226,7 +228,7 @@ program
       pgAdminGatewayIp =
         // @ts-ignore TODO: typing
         pgAdminInspectResponse[0]?.NetworkSettings?.Networks[
-          "express-docker-postgres_default"
+          `${path.basename(cwd())}_default`
         ].Gateway || "";
 
       ipCheckAttempt++;
