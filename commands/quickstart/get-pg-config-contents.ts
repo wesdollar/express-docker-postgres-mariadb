@@ -15,7 +15,8 @@ export const getPgConfigContents = (
     "database": "${database}",
     "host": "${gatewayIp}",
     "dialect": "${dialect}",
-    "port": "${dbPort}"
+    "port": "${dbPort}",
+    "seederStorage": "sequelize"
   },
   "local": {
     "username": "root",
@@ -23,7 +24,8 @@ export const getPgConfigContents = (
     "database": "${database}",
     "host": "localhost",
     "dialect": "${dialect}",
-    "port": "${dbPort}"
+    "port": "${dbPort}",
+    "seederStorage": "sequelize"
   }
 }
 `;
