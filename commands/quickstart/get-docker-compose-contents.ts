@@ -78,6 +78,6 @@ services:
 ${dbConfig}
 
 volumes:
- ${serviceName}: {}
+  ${serviceName}: {}
 `;
 };
