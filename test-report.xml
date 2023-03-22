@@ -1,3 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/create-docker-compose-yml.test.ts">
+    <testCase name="createDockerComposeYml should call getDockerComposeContents with the correct arguments" duration="1"/>
+    <testCase name="createDockerComposeYml should call chalk.blue with the correct text" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/process-rim-raf-actions.test.ts">
+    <testCase name="processRimRafActions should call rimraf.sync with correct arguments" duration="2"/>
+    <testCase name="processRimRafActions should call console.log with correct arguments" duration="0"/>
+    <testCase name="processRimRafActions should call console.error with correct arguments" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/spin-up-docker-containers.test.ts">
+    <testCase name="spinUpDockerContainers should call console.log" duration="1"/>
+    <testCase name="spinUpDockerContainers should call exec with docker-compose up" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/get-docker-compose-contents.test.ts">
+    <testCase name="getDockerComposeContents should return docker compose contents" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/spin-up-and-configure-database.test.ts">
+    <testCase name="spinUpAndConfigureDatabase should call mkdirSync with correct arguments" duration="1"/>
+    <testCase name="spinUpAndConfigureDatabase should call writeFileSync with correct arguments" duration="0"/>
+    <testCase name="spinUpAndConfigureDatabase should call console.log with correct arguments" duration="0"/>
+    <testCase name="spinUpAndConfigureDatabase should call readFileSync with correct arguments" duration="0"/>
+    <testCase name="spinUpAndConfigureDatabase should call writeFileSync with correct arguments when isInit is false" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/generate-env-file.test.ts">
+    <testCase name="generateEnvFile should call writeFileSync with correct arguments" duration="1"/>
+    <testCase name="generateEnvFile should call console.log with correct arguments" duration="0"/>
+    <testCase name="generateEnvFile should call getEnvFileContents with correct arguments" duration="1"/>
+    <testCase name="generateEnvFile should call cwd with correct arguments" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/prompts/collect-environment-info.test.ts">
+    <testCase name="collectEnvironmentInfo should call prompts" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/create-husky-hooks.test.ts">
+    <testCase name="createHuskyHooks should call spawn with the correct arguments" duration="1"/>
+    <testCase name="createHuskyHooks should call huskyProcess.on with the correct arguments" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/get-env-file-contents.test.ts">
+    <testCase name="getEnvFileContents should return env file contents" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/create-fs-directory.test.ts">
+    <testCase name="createFsDirectory should call rimraf.sync with the correct arguments" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/prompts/get-users-name.test.ts">
+    <testCase name="getUsersName should call prompts" duration="1"/>
+    <testCase name="getUsersName should call console.log with correct string" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/get-pg-config-contents.test.ts">
+    <testCase name="getPgConfigContents should return pg config contents" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/install-yarn-dependencies.test.ts">
+    <testCase name="execInstallYarnDependencies should call execSync with correct arguments" duration="1"/>
+    <testCase name="execInstallYarnDependencies should call console.log with correct arguments" duration="0"/>
+    <testCase name="execInstallYarnDependencies should call execSync with correct arguments when skipExtraDependencies is true" duration="1"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/helpers/run-database-seeds-and-migrations.test.ts">
+    <testCase name="runDatabaseSeedsAndMigrations should call execSync with correct arguments" duration="1"/>
+    <testCase name="runDatabaseSeedsAndMigrations should call console.log with correct arguments" duration="0"/>
+    <testCase name="runDatabaseSeedsAndMigrations should call console.error with correct arguments" duration="0"/>
+  </file>
+  <file path="/Users/postcards/Code/express-docker-postgres-mariadb/commands/quickstart/prompts/init-continue.test.ts">
+    <testCase name="initContinue should call prompt" duration="1"/>
+    <testCase name="initContinue should return initContinue" duration="0"/>
+  </file>
 </testExecutions>
